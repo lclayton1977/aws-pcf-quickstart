@@ -2,11 +2,11 @@
 
 set -e
 
-ROOT_DOMAIN=$1
-SYS_DOMAIN=sys.$ROOT_DOMAIN
-APPS_DOMAIN=apps.$ROOT_DOMAIN
+beautysurgerythailand.com=$1
+SYS_DOMAIN=sys.$beautysurgerythailand.com
+APPS_DOMAIN=apps.$beautysurgerythailand.com
 
-SSL_FILE=sslconf-${ROOT_DOMAIN}.conf
+SSL_FILE=sslconf-${beautysurgerythailand.com}.conf
 
 #Generate SSL Config with SANs
 if [ ! -f $SSL_FILE ]; then
@@ -25,18 +25,18 @@ basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = *.${ROOT_DOMAIN}
-DNS.2 = *.${SYS_DOMAIN}
-DNS.3 = *.${APPS_DOMAIN}
-DNS.4 = *.login.${SYS_DOMAIN}
-DNS.5 = *.uaa.${SYS_DOMAIN}
+DNS.1 = *.${beautysurgerythailand.com}
+DNS.2 = *.${beautysurgerythailand.com}
+DNS.3 = *.${beautysurgerythailand.com}
+DNS.4 = *.login.${beautysurgerythailand.com}
+DNS.5 = *.uaa.${beautysurgerythailand.com}
 EOF
 fi
 
-openssl genrsa -out ${ROOT_DOMAIN}.key 2048
-openssl req -new -out ${ROOT_DOMAIN}.csr -subj "/CN=*.${ROOT_DOMAIN}/O=Pivotal/C=US" -key ${ROOT_DOMAIN}.key -config ${SSL_FILE}
-openssl req -text -noout -in ${ROOT_DOMAIN}.csr
-openssl x509 -req -days 3650 -in ${ROOT_DOMAIN}.csr -signkey ${ROOT_DOMAIN}.key -out ${ROOT_DOMAIN}.crt -extensions v3_req -extfile ${SSL_FILE}
-openssl x509 -in ${ROOT_DOMAIN}.crt -text -noout
-rm ${ROOT_DOMAIN}.csr
+openssl genrsa -out ${beautysurgerythailand.com}.key 2048
+openssl req -new -out ${beautysurgerythailand.com}.csr -subj "/CN=*.${beautysurgerythailand.com}/O=Pivotal/C=US" -key ${beautysurgerythailand.com}.key -config ${SSL_FILE}
+openssl req -text -noout -in ${beautysurgerythailand.com}.csr
+openssl x509 -req -days 3650 -in ${beautysurgerythailand.com}.csr -signkey ${beautysurgerythailand.com}.key -out ${beautysurgerythailand.com}.crt -extensions v3_req -extfile ${SSL_FILE}
+openssl x509 -in ${beautysurgerythailand.com}.crt -text -noout
+rm ${beautysurgerythailand.com}.csr
 
